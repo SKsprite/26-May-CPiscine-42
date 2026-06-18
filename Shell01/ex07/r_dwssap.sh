@@ -1,0 +1,1 @@
+cat /etc/passwd | tr ':' ' ' | awk '{print $1}' | sed -n "n;p;" | rev | sort -r | awk -v start="$FT_LINE1" -v end="$FT_LINE2" '(!start || NR >= start) && (!end || NR <= end)' | tr "\n" ";" | sed "s/;\([;]*[^;]\)/, \1/g" | sed 's/;/./1' 
